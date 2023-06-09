@@ -42,7 +42,7 @@ namespace root {
         private void Update()
         {
             // Update target position
-            targetPosition += new Vector3(input.Move.x, input.Move.y, 0f) * (speed * Time.deltaTime);
+            targetPosition += new Vector3(input.Move.x, input.Move.y, 0) * (speed * Time.deltaTime);
 
             // Set boundary
             var minPlayerX = CameraFollow.position.x + minX;
