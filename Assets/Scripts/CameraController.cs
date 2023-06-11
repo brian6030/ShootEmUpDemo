@@ -12,7 +12,11 @@ namespace root
         [SerializeField] float speed = 2f;
 
         // Start is called before the first frame update
-        void Start() => transform.position = new Vector3(player.position.x, player.position.y, player.position.z);
+        // void Start() => transform.position = new Vector3(player.position.x, player.position.y, player.position.z);
+        private void Start()
+        {
+            transform.position = new Vector3(player.position.x, player.position.y, gameObject.transform.position.z);
+        }
 
         void LateUpdate()
         {
