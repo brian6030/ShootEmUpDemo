@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  muzzlePrefab: {fileID: 100008, guid: f13c1e90acdc2fc488ddaa96db1491f0, type: 3}
+  muzzlePrefab: {fileID: 0}
   hitPrefab: {fileID: 224740549491722936, guid: 8d4ef7921473ccf4ea206abc571b2fa3,
     type: 3}
 --- !u!135 &6991559685416972020
