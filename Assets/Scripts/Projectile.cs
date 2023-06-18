@@ -37,7 +37,11 @@ namespace root
             transform.SetParent(null);
             transform.position += transform.forward * (speed * Time.deltaTime);
 
-            Callback?.Invoke();
+            if (Callback != null)
+            {
+                Callback.Invoke();
+            }
+
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -49,6 +53,13 @@ namespace root
 
                 // Destory particle system
                 DestoryParticleSystem(hitVFX);
+            }
+
+            // Enemy takes damage
+            var plane = collision.gameObject.GetComponent<Plane>();
+            if (plane != null) 
+            {
+                plane.TakeDamage(1);
             }
 
             Destroy(gameObject);

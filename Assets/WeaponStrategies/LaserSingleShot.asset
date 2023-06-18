@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1823c579168fc479af9e81bd51f6d7, type: 3}
   m_Name: LaserSingleShot
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   fireRate: 0.5
   projectileSpeed: 10
   projectileLifetime: 4
