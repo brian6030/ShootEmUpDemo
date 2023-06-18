@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4701295698020494270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 407877542441705868}
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  muzzlePrefab: {fileID: 0}
   hitPrefab: {fileID: 224740549491722936, guid: 8d4ef7921473ccf4ea206abc571b2fa3,
     type: 3}
 --- !u!135 &6991559685416972020
@@ -143,6 +142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bullet_sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b425419c694e7484c811100da676097b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

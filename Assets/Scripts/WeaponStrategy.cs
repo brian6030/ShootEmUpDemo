@@ -10,7 +10,7 @@ namespace root
         [SerializeField] float fireRate = 0.5f;
         [SerializeField] protected float projectileSpeed = 10f;
         [SerializeField] protected float projectileLifetime = 4f;
-        [SerializeField] protected GameObject projectilePrefab;
+        [SerializeField] public GameObject projectilePrefab;
 
         //public int Damage => damage;
         public float FireRate => fireRate;
@@ -20,7 +20,6 @@ namespace root
             // no-op
         }
 
-        public abstract void Fire(Transform firePoint, LayerMask layer);
-
+       public abstract void Fire(Transform firePoint, LayerMask layer);
     }
 }

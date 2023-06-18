@@ -8,7 +8,6 @@ namespace root
     public class Projectile : MonoBehaviour
     {
         [SerializeField] float speed;
-        [SerializeField] GameObject muzzlePrefab;
         [SerializeField] GameObject hitPrefab;
 
         Transform parent;
@@ -17,20 +16,6 @@ namespace root
         public void SetParent(Transform parent) => this.parent = parent;
 
         public Action Callback;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            if (muzzlePrefab != null) 
-            {
-                var muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
-                muzzleVFX.transform.forward = gameObject.transform.forward;
-                muzzleVFX.transform.SetParent(parent);
-
-                // Destory particle system
-                DestoryParticleSystem(muzzleVFX);
-            }
-        }
 
         void Update()
         {
@@ -41,41 +26,43 @@ namespace root
             {
                 Callback.Invoke();
             }
-
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (hitPrefab != null) 
+            if (collision.gameObject.tag != "Wall") 
             {
-                ContactPoint contact = collision.contacts[0];
-                var hitVFX = Instantiate(hitPrefab, contact.point, Quaternion.identity);
+                if (hitPrefab != null)
+                {
+                    ContactPoint contact = collision.contacts[0];
+                    var hitVFX = Instantiate(hitPrefab, contact.point, Quaternion.identity);
 
-                // Destory particle system
-                DestoryParticleSystem(hitVFX);
+                    // Destory particle system
+                    DestoryParticleSystem(hitVFX);
+                }
+
+                // Enemy takes damage
+                var plane = collision.gameObject.GetComponent<Plane>();
+                if (plane != null)
+                {
+                    plane.TakeDamage(1);
+                }
             }
-
-            // Enemy takes damage
-            var plane = collision.gameObject.GetComponent<Plane>();
-            if (plane != null) 
-            {
-                plane.TakeDamage(1);
-            }
-
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
 
-        void DestoryParticleSystem(GameObject muzzleVFX)
+        void DestoryParticleSystem(GameObject hitVFX)
         {
-            var ps = muzzleVFX.GetComponent<ParticleSystem>();
+            var ps = hitVFX.GetComponent<ParticleSystem>();
 
             if (ps == null)
             {
-                ps = muzzleVFX.GetComponentInChildren<ParticleSystem>();
+                ps = hitVFX.GetComponentInChildren<ParticleSystem>();
             }
 
-            Destroy(muzzleVFX, ps.main.duration);
+            Destroy(hitVFX, ps.main.duration);
         }
     }
 }
